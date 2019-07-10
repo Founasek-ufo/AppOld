@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">HomeSensors</string>
+    <string name="temperatureSymbolCelsia">\u2103</string>
+    <string name="temperatureSymbolFahrenheit">\u2109</string>
+    <string name="mainNotificationAllOk">Hey, all looks good!</string>
 </resources>

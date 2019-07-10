@@ -5,16 +5,34 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/primareBackground"
         tools:context=".MainActivity">
 
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hello World! - Second commit"
+            android:text="22"
+            style="@style/temperatureStyleText"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="8dp"
-            app:layout_constraintVertical_bias="0.17000002"/>
+            app:layout_constraintVertical_bias="0.26" android:id="@+id/sensor_temperature"
+            android:layout_marginLeft="32dp"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/temperatureSymbolCelsia"
+            style="@style/temperatureStyleText"
+            app:layout_constraintBottom_toBottomOf="@+id/sensor_temperature"
+            app:layout_constraintTop_toTopOf="@+id/sensor_temperature"
+            app:layout_constraintVertical_bias="0.17000002" android:id="@+id/sensor_temperature_symbol"
+            app:layout_constraintStart_toEndOf="@+id/sensor_temperature"/>
+    <TextView
+            style="@style/notificationStyleText"
+            android:text="@string/mainNotificationAllOk"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView" app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="32dp"
+            android:layout_marginBottom="16dp" app:layout_constraintBottom_toTopOf="@+id/sensor_temperature"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
