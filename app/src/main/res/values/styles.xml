@@ -11,4 +11,14 @@
 
     </style>
 
+    <style name="temperatureStyleText">
+        <item name="android:textColor">@color/textColor</item>
+        <item name="android:textSize">@dimen/textTemperatureSize</item>
+    </style>
+
+    <style name="notificationStyleText">
+        <item name="android:textColor">@color/textColor</item>
+        <item name="android:textSize">@dimen/textNotificationeSize</item>
+    </style>
+
 </resources>
