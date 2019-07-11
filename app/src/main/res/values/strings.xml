@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">HomeSensors</string>
-    <string name="temperatureSymbolCelsia">\u2103</string>
-    <string name="temperatureSymbolFahrenheit">\u2109</string>
-    <string name="mainNotificationAllOk">Hey, all looks good!</string>
+    <string name="user_photo_description">UserPhoto</string>
+    <string name="temperature_value">22°C</string>
+    <string name="temperature_text">Hey, all looks good!</string>
+    <string name="position_text">Outside pool</string>
+    <string name="data_update_date">Just now</string>
 </resources>
