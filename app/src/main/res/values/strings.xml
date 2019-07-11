@@ -1,8 +1,14 @@
 <resources>
     <string name="app_name">HomeSensors</string>
+
     <string name="user_photo_description">UserPhoto</string>
-    <string name="temperature_value">22°C</string>
-    <string name="temperature_text">Hey, all looks good!</string>
+    <string name="synchronization_description">UserPhoto</string>
+
+    <string name="temperature_value">22</string>
+
+    <string name="temperature_mark">°C</string>
+
+    <string name="message_text">Hey, all looks good!</string>
     <string name="position_text">Outside pool</string>
-    <string name="data_update_date">Just now</string>
+    <string name="synchronization_date">Just now</string>
 </resources>
