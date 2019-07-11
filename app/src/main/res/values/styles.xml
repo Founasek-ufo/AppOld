@@ -18,7 +18,7 @@
 
     <style name="notificationStyleText">
         <item name="android:textColor">@color/textColor</item>
-        <item name="android:textSize">@dimen/textNotificationeSize</item>
+        <item name="android:textSize">@dimen/textNotificationSize</item>
     </style>
 
 </resources>
