@@ -1,8 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="textTemperatureSize">100sp</dimen>
-    <dimen name="textNotificationSize">26sp</dimen>
-    <dimen name="textMessageSize">15sp</dimen>
-    <dimen name="textPositionSize">20sp</dimen>
-    <dimen name="textSynchronizeSize">15sp</dimen>
+
+    <!-- Margin Sizes -->
+    <dimen name="leftMargin10">10dp</dimen>
+    <dimen name="leftMargin15">15dp</dimen>
+    <dimen name="leftMargin20">20dp</dimen>
+
+    <dimen name="rightMargin10">10dp</dimen>
+    <dimen name="rightMargin15">15dp</dimen>
+    <dimen name="rightMargin20">20dp</dimen>
+
+    <dimen name="topMargin10">10dp</dimen>
+    <dimen name="topMargin15">15dp</dimen>
+    <dimen name="topMargin20">20dp</dimen>
+    <dimen name="topMargin50">50dp</dimen>
+
+    <dimen name="bottomMargin10">10dp</dimen>
+    <dimen name="bottomMargin15">15dp</dimen>
+    <dimen name="bottomMargin20">20dp</dimen>
+
+    <!-- Text Sizes -->
+    <dimen name="textSize100">100sp</dimen>
+    <dimen name="textSize25">25sp</dimen>
+    <dimen name="textSize20">20sp</dimen>
+    <dimen name="textSize15">15sp</dimen>
+    <dimen name="textSize10">10sp</dimen>
 </resources>

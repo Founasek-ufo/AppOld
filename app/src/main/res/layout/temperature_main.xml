@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/ConstraintLayout"
+        android:background="@color/colorBackground"
+        tools:context=".TemperatureActivity">
+
+    <FrameLayout
+            android:background="@color/colorBackgroundLight"
+            android:layout_height="180dp"
+            android:id="@+id/frameLayout"
+            app:layout_constraintTop_toBottomOf="@+id/sensor_temperature"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="0dp"
+            app:layout_constraintHorizontal_bias="0.0"
+            android:layout_marginBottom="@dimen/bottomMargin10"
+            app:layout_constraintBottom_toTopOf="@+id/floatingActionButton"
+            app:layout_constraintVertical_bias="0.0">
+
+    </FrameLayout>
+
+    <ImageView
+            android:id="@+id/profileImage"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:contentDescription="@string/user_photo_description"
+            android:layout_marginEnd="@dimen/rightMargin20"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="@dimen/topMargin20"
+            app:srcCompat="@drawable/user_photo"/>
+
+    <TextView
+            android:text="@string/message_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/message_text"
+            android:textSize="@dimen/textSize15"
+            android:textColor="@color/textColorWhite"
+            android:textAlignment="textStart"
+            android:layout_marginTop="@dimen/topMargin50"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginStart="@dimen/leftMargin10"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
+            android:text="@string/temperature_value"
+            android:id="@+id/sensor_temperature"
+            android:textSize="@dimen/textSize100"
+            android:textColor="@color/textColorWhite"
+            android:textAlignment="textStart"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/message_text"
+            android:layout_marginStart="@dimen/leftMargin10"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
+            android:text="@string/temperature_mark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/temperature_mark"
+            android:textSize="@dimen/textSize100"
+            android:textColor="@color/textColorWhite"
+            android:textAlignment="textStart"
+            app:layout_constraintStart_toEndOf="@+id/sensor_temperature"
+            app:layout_constraintTop_toTopOf="@+id/sensor_temperature"/>
+
+    <TextView
+            android:text="@string/position_text"
+            android:layout_width="wrap_content"
+            android:id="@+id/position_text"
+            android:textSize="@dimen/textSize25"
+            android:textColor="@color/textColorWhite"
+            android:textAlignment="textStart"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/topMargin10"
+            app:layout_constraintTop_toBottomOf="@+id/frameLayout"
+            android:layout_marginStart="@dimen/leftMargin10"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
+            android:text="@string/synchronization_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/update_date_text"
+            android:textSize="@dimen/textSize15"
+            android:textColor="@color/textColorWhite"
+            android:textAlignment="textStart"
+            android:layout_marginTop="@dimen/topMargin10"
+            app:layout_constraintTop_toBottomOf="@+id/position_text"
+            android:layout_marginStart="@dimen/leftMargin10"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.0"/>
+
+    <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/updatingdata_image"
+            android:contentDescription="@string/synchronization_description"
+            android:layout_marginTop="@dimen/topMargin10"
+            app:layout_constraintTop_toBottomOf="@+id/position_text"
+            app:layout_constraintStart_toEndOf="@+id/update_date_text"
+            android:layout_marginStart="@dimen/leftMargin10"
+            app:srcCompat="@android:drawable/stat_notify_sync_noanim"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/floatingActionButton"
+            app:backgroundTint="@color/colorBackgroundDark"
+            android:src="@drawable/ic_expand_less_black_24dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="@dimen/rightMargin20"
+            android:layout_marginBottom="@dimen/bottomMargin20"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#404040</color>
-    <color name="colorPrimaryDark">#282828</color>
+    <color name="colorBackground">#404040</color>
+    <color name="colorBackgroundDark">#282828</color>
+    <color name="colorBackgroundLight">#505050</color>
     <color name="colorAccent">#D81B60</color>
-    <color name="primaryBackground">#404040</color>
-    <color name="graphBackground">#505050</color>
-    <color name="textColor">#FFFFFF</color>
 
-    <color name="floatingButton">#D81B60</color>
+
+    <!-- Text Colors -->
+    <color name="textColorWhite">#FFFFFF</color>
 
 
 </resources>

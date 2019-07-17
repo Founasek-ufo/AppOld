@@ -1,7 +1,6 @@
 package com.example.homesensors
 
 import android.annotation.SuppressLint
-import android.opengl.Visibility
 import android.os.Bundle
 import android.view.View
 import android.view.View.*
@@ -20,7 +19,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 
-class MainActivity : AppCompatActivity(), OnClickListener {
+class TemperatureActivity : AppCompatActivity(), OnClickListener {
 
     lateinit var currentTemperature: TextView
     lateinit var updatingImage: ImageView
@@ -36,7 +35,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.temperature_main)
 
         buildButton()
         buildAnimation()

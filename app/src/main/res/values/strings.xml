@@ -1,14 +1,32 @@
 <resources>
     <string name="app_name">HomeSensors</string>
 
-    <string name="user_photo_description">UserPhoto</string>
-    <string name="synchronization_description">UserPhoto</string>
+    <!-- Main Menu - Texts -->
+    <string name="menu_text">My Sensors</string>
+    <string name="sensor_text">2 sensors are active</string>
+    <string name="temperature">Temperature</string>
+    <string name="humidity">Humidity</string>
+    <string name="lights">Lights</string>
+    <string name="doors">Doors</string>
+    <string name="alarm">Alarm</string>
+    <string name="setting">Settings</string>
 
-    <string name="temperature_value">22</string>
+    <!-- Main Menu - Image Descriptions -->
+    <string name="temperature_description">TemperatureImgDescription</string>
+    <string name="humidity_description">HumidityImgDescription</string>
+    <string name="lights_description">LightsImgDescription</string>
+    <string name="doors_description">DoorsImgDescription</string>
+    <string name="sensor1_description">Sensor1ImgDescription</string>
+    <string name="sensor2_description">Sensor2ImgDescription</string>
 
-    <string name="temperature_mark">°C</string>
-
+    <!-- Temperature - Texts -->
     <string name="message_text">Hey, all looks good!</string>
+    <string name="temperature_value">22</string>
+    <string name="temperature_mark">°C</string>
     <string name="position_text">Outside pool</string>
-    <string name="synchronization_date">Just now</string>
+    <string name="synchronization_text">Just now</string>
+
+    <!-- Temperature - Image Descriptions -->
+    <string name="user_photo_description">UserImgDescription</string>
+    <string name="synchronization_description">SyncImgDescription</string>
 </resources>
