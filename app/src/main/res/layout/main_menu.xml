@@ -59,7 +59,7 @@
 
                 <LinearLayout
                         android:layout_gravity="center_horizontal|center_vertical"
-                        android:layout_margin="5dp"
+                        android:layout_margin="10dp"
                         android:orientation="vertical"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -81,11 +81,8 @@
                             android:layout_gravity="center_horizontal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:id="@+id/thermometer"
-                            android:contentDescription="@string/temperature_description"/>
-
-
-
+                            android:contentDescription="@string/temperature_description"
+                            android:layout_margin="25dp"/>
 
 
                 </LinearLayout>
@@ -125,11 +122,12 @@
                             android:layout_height="wrap_content"/>
 
                     <ImageView
-                            android:src="@drawable/cloud"
+                            android:src="@drawable/droplet"
                             android:layout_gravity="center_horizontal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:contentDescription="@string/humidity_description"/>
+                            android:contentDescription="@string/humidity_description"
+                            android:layout_margin="30dp"/>
 
 
 
@@ -177,7 +175,8 @@
                             android:layout_gravity="center_horizontal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:contentDescription="@string/lights_description"/>
+                            android:contentDescription="@string/lights_description"
+                            android:layout_margin="25dp"/>
 
 
 
@@ -222,7 +221,8 @@
                             android:layout_gravity="center_horizontal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:contentDescription="@string/doors_description"/>
+                            android:contentDescription="@string/doors_description"
+                            android:layout_margin="25dp"/>
 
 
 
@@ -270,7 +270,8 @@
                             android:layout_gravity="center_horizontal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:contentDescription="@string/sensor1_description"/>
+                            android:contentDescription="@string/sensor1_description"
+                            android:layout_margin="25dp"/>
 
 
 
@@ -295,14 +296,15 @@
 
                 <LinearLayout
                         android:layout_gravity="center_horizontal|center_vertical"
-                        android:layout_margin="5dp"
+                        android:layout_margin="10dp"
                         android:orientation="vertical"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@color/colorBackgroundLight">
 
+
                     <TextView
-                            android:text="@string/setting"
+                            android:text="@string/temperature"
                             android:textAlignment="center"
                             android:textColor="@color/textColorWhite"
                             android:textSize="@dimen/textSize20"
@@ -312,13 +314,12 @@
 
 
                     <ImageView
-                            android:src="@drawable/settings"
+                            android:src="@drawable/thermometer"
                             android:layout_gravity="center_horizontal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:contentDescription="@string/sensor2_description"/>
-
-
+                            android:contentDescription="@string/temperature_description"
+                            android:layout_margin="25dp"/>
 
 
                 </LinearLayout>

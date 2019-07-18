@@ -9,15 +9,20 @@
     <string name="lights">Lights</string>
     <string name="doors">Doors</string>
     <string name="alarm">Alarm</string>
-    <string name="setting">Settings</string>
 
-    <!-- Main Menu - Image Descriptions -->
-    <string name="temperature_description">TemperatureImgDescription</string>
-    <string name="humidity_description">HumidityImgDescription</string>
-    <string name="lights_description">LightsImgDescription</string>
-    <string name="doors_description">DoorsImgDescription</string>
-    <string name="sensor1_description">Sensor1ImgDescription</string>
-    <string name="sensor2_description">Sensor2ImgDescription</string>
+    <!-- Login Menu - Texts -->
+    <string name="LoginHeadline_text">Login</string>
+    <string name="Login_button">Login</string>
+    <string name="username_hint">Username</string>
+    <string name="password_hint">Password</string>
+
+    <!-- Register Menu - Texts -->
+    <string name="RegistrationHeadline_text">Registration</string>
+    <string name="RegisterHere_text">Register Here.</string>
+    <string name="Login_text">Login Here.</string>
+    <string name="register_button">Register Now!</string>
+    <string name="YourUsername_hint">Username</string>
+    <string name="YourPassword_hint">Password</string>
 
     <!-- Temperature - Texts -->
     <string name="message_text">Hey, all looks good!</string>
@@ -26,7 +31,23 @@
     <string name="position_text">Outside pool</string>
     <string name="synchronization_text">Just now</string>
 
-    <!-- Temperature - Image Descriptions -->
+
+    <!-- Image Descriptions -->
+    <string name="temperature_description">TemperatureImgDescription</string>
+    <string name="humidity_description">HumidityImgDescription</string>
+    <string name="lights_description">LightsImgDescription</string>
+    <string name="doors_description">DoorsImgDescription</string>
+    <string name="sensor1_description">Sensor1ImgDescription</string>
+    <string name="sensor2_description">Sensor2ImgDescription</string>
+
+    <string name="login_description">LoginImgDescription</string>
+    <string name="facebook_description">FacebookImgDescription</string>
+    <string name="instagram_description">InstagramImgDescription</string>
+    <string name="twitter_description">TwitterImgDescription</string>
+    <string name="lock_description">LockImgDescription</string>
+    <string name="user_description">UserImgDescription</string>
+
     <string name="user_photo_description">UserImgDescription</string>
     <string name="synchronization_description">SyncImgDescription</string>
+
 </resources>
