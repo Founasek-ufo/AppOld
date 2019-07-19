@@ -4,7 +4,7 @@
     <!-- Main Menu - Texts -->
     <string name="menu_text">My Sensors</string>
     <string name="sensor_text">2 sensors are active</string>
-    <string name="temperature">Temperature</string>
+    <string name="temperature">Temperatures</string>
     <string name="humidity">Humidity</string>
     <string name="lights">Lights</string>
     <string name="doors">Doors</string>
