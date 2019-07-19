@@ -1,7 +1,8 @@
-package com.example.homesensors
+package com.example.homesensors.activities
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.example.homesensors.R
 
 class Registration_Activity : AppCompatActivity() {
 

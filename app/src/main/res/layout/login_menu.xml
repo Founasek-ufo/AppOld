@@ -7,7 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/ConstraintLayout"
-        tools:context=".TemperatureActivity">
+        tools:context=".activities.TemperatureActivity">
 
 
     <RelativeLayout

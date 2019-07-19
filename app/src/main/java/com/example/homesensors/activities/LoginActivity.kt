@@ -1,13 +1,18 @@
-package com.example.homesensors
+package com.example.homesensors.activities
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.example.homesensors.R
 
 class LoginActivity : AppCompatActivity() {
 
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.login_menu)}
+        setContentView(R.layout.login_menu)
+    }
+
+
 
 }
