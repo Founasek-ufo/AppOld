@@ -1,10 +1,10 @@
 package com.example.homesensors.adapters
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
@@ -19,7 +19,7 @@ import java.util.*
 
 class AdapterSensors(mContext: Context) : RecyclerView.Adapter<AdapterSensors.NoteHolder>() {
 
-    private var allSensors: List<temperatureSensor> = ArrayList<temperatureSensor>()
+    private var allSensors: List<temperatureSensor> = ArrayList()
 
     private val locContext: Context
 
@@ -35,11 +35,11 @@ class AdapterSensors(mContext: Context) : RecyclerView.Adapter<AdapterSensors.No
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoteHolder {
-        val itemView: View
-        itemView = LayoutInflater.from(parent.context).inflate(R.layout.home_node, parent, false)
+        val itemView: View = LayoutInflater.from(parent.context).inflate(R.layout.home_node, parent, false)
         return NoteHolder(itemView, viewType, listner)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: NoteHolder, position: Int) {
         val leftPossition: Int = position * 2
         val rightPosstion: Int = ((2 * position) + 1)
@@ -115,10 +115,35 @@ class AdapterSensors(mContext: Context) : RecyclerView.Adapter<AdapterSensors.No
             this.onClick = onClickListener
 
             leftIcon.setOnClickListener(View.OnClickListener(function = {
-                onClick.onOpenClick(adapterPosition* 2)
+                onClick.onOpenClick(adapterPosition * 2)
             }))
 
+            leftCardView.setOnClickListener(View.OnClickListener(function = {
+                onClick.onOpenClick(adapterPosition * 2)
+            }))
+
+            leftValue.setOnClickListener(View.OnClickListener(function = {
+                onClick.onOpenClick(adapterPosition * 2)
+            }))
+
+            leftTitle.setOnClickListener(View.OnClickListener(function = {
+                onClick.onOpenClick(adapterPosition * 2)
+            }))
+
+
             rightIcon.setOnClickListener(View.OnClickListener(function = {
+                onClick.onOpenClick((2 * adapterPosition) + 1)
+            }))
+
+            rightCardView.setOnClickListener(View.OnClickListener(function = {
+                onClick.onOpenClick((2 * adapterPosition) + 1)
+            }))
+
+            rightValue.setOnClickListener(View.OnClickListener(function = {
+                onClick.onOpenClick((2 * adapterPosition) + 1)
+            }))
+
+            rightTitle.setOnClickListener(View.OnClickListener(function = {
                 onClick.onOpenClick((2 * adapterPosition) + 1)
             }))
         }

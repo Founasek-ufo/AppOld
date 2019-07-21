@@ -10,6 +10,9 @@ class temperatureSensor(value: Double, syns: Boolean, serialNumber: String) {
     var SERIAL_HUMIDITY: String = "humd"
 
     companion object {
+        const val SCALE_CELSIUM = 1
+        const val SCALE_FAHRENHEIT = 2
+
         const val TYPE_TEMPERATURE = 1
         const val TYPE_HUMIDITY = 2
     }
@@ -35,9 +38,19 @@ class temperatureSensor(value: Double, syns: Boolean, serialNumber: String) {
         synsLastDate = getCurrentTime()
     }
 
-    fun getValue(): Double{
-        return value
+    fun getValue(scale: Int): Double{
+        when(scale){
+            SCALE_CELSIUM -> return value
+            SCALE_FAHRENHEIT -> return (value * 1.8 + 32)
+            else -> return value
+        }
     }
+
+    fun getValue():Double{
+        return value;
+    }
+
+
 
     fun setValue(temperature: Double){
         this.value = temperature

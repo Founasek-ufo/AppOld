@@ -21,13 +21,13 @@ class OneSensorService {
     private fun startCountDownTimer() {
         val mCountDownTimer: CountDownTimer = object : CountDownTimer(50000, 1000) {
             override fun onTick(mills: Long) {
-                trySensor.setValue(round(mills.toDouble() / 1000))
 
-                if (mills > 40000 || (mills > 20000 && mills < 30000)) {
+                if ((mills > 40000 && mills < 45000) || (mills > 20000 && mills < 30000)) {
                     trySensor.setSynsState(false)
                 } else {
                     trySensor.setSynsState(true)
                     trySensor.setCurrentTime()
+                    trySensor.setValue(round(mills.toDouble() / 1000))
                 }
 
 
