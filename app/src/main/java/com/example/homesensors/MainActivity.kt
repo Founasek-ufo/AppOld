@@ -3,7 +3,6 @@ package com.example.homesensors
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -19,7 +18,7 @@ import com.example.homesensors.entities.temperatureSensor
 import com.example.homesensors.viewModel.AllSensorsViewModel
 
 
-class MenuActivity : AppCompatActivity(), onItemClickListener {
+class MainActivity : AppCompatActivity(), onItemClickListener {
 
     override fun onOpenClick(poss: Int) {
         Log.d(TAG, "onOpenClick")
@@ -33,7 +32,7 @@ class MenuActivity : AppCompatActivity(), onItemClickListener {
 
     }
 
-    private val TAG = "MenuActivity";
+    private val TAG = "MainActivity";
 
     lateinit var recyclerView: RecyclerView
 
@@ -43,7 +42,7 @@ class MenuActivity : AppCompatActivity(), onItemClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.main_menu)
+        setContentView(R.layout.main_activity)
 
         buildView()
         buildRecyclerView()

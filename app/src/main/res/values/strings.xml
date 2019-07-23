@@ -19,7 +19,7 @@
     <!-- Register Menu - Texts -->
     <string name="RegistrationHeadline_text">Registration</string>
     <string name="RegisterHere_text">Register Here.</string>
-    <string name="Login_text">Login Here.</string>
+    <string name="Login_text">login via …</string>
     <string name="register_button">Register Now!</string>
     <string name="YourUsername_hint">Username</string>
     <string name="YourPassword_hint">Password</string>

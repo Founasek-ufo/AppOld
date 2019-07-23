@@ -53,7 +53,7 @@ class TemperatureActivity : AppCompatActivity(), OnClickListener {
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(com.example.homesensors.R.layout.temperature_main)
+        setContentView(com.example.homesensors.R.layout.temperature_activity)
 
         buildButton()
         buildAnimation()
