@@ -7,10 +7,15 @@ import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.example.homesensors.MainActivity
 import com.example.homesensors.R
+import com.example.homesensors.handlers.AuthorisationHandler
+import com.example.homesensors.handlers.IAuthorisationHandler
 
 class LoginActivity : AppCompatActivity(), View.OnClickListener {
+
+    val aut:IAuthorisationHandler = AuthorisationHandler()
+
     override fun onClick(v: View?) {
-        var toMain: Intent = Intent(this, MainActivity::class.java)
+        var toMain = Intent(this, MainActivity::class.java)
         startActivity(toMain)
     }
 
