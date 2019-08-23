@@ -1,8 +1,5 @@
 package com.example.homesensors.activities
 
-import android.animation.Animator
-import android.animation.AnimatorListenerAdapter
-import android.animation.ValueAnimator
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
@@ -31,7 +28,6 @@ import java.util.*
 class TemperatureActivity : AppCompatActivity(), OnClickListener {
 
     private val TAG = "TemperatureActivity"
-
 
     companion object {
         const val EXTRA_TYPE = "com.example.homesensors.activites.EXTRA_TYPE"
@@ -69,22 +65,22 @@ class TemperatureActivity : AppCompatActivity(), OnClickListener {
 
         }
 
-        if(type == 1){
+        if (type == 1) {
             mark.setOnClickListener(this)
         }
 
-
-        val animator = ValueAnimator.ofInt(0, 50) //0 is min number, 600 is max number
-        animator.duration = 3000 //Duration is in milliseconds
-        animator.addUpdateListener { animation -> currentTemperature.setText(animation.animatedValue.toString()) }
-        animator.addListener(object : AnimatorListenerAdapter() {
-            override fun onAnimationEnd(animation: Animator) {
-                // done
-                Log.d(TAG, "onAnimationEnd")
-                buildViewModel()
-            }
-        })
-        animator.start()
+//
+//        val animator = ValueAnimator.ofInt(0, 50) //0 is min number, 600 is max number
+//        animator.duration = 3000 //Duration is in milliseconds
+//        animator.addUpdateListener { animation -> currentTemperature.setText(animation.animatedValue.toString()) }
+//        animator.addListener(object : AnimatorListenerAdapter() {
+//            override fun onAnimationEnd(animation: Animator) {
+        // done
+//                Log.d(TAG, "onAnimationEnd")
+        buildViewModel()
+//            }
+//        })
+//        animator.start()
 
 
     }
@@ -143,10 +139,10 @@ class TemperatureActivity : AppCompatActivity(), OnClickListener {
                 showHideFab(openState)
                 openState = !openState
             }
-            R.id.temperature_mark ->{
-                if (scale == SCALE_CELSIUM ){
+            R.id.temperature_mark -> {
+                if (scale == SCALE_CELSIUM) {
                     scale = SCALE_FAHRENHEIT
-                }else{
+                } else {
                     scale = SCALE_CELSIUM
                 }
             }
