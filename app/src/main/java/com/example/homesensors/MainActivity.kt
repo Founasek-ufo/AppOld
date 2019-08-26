@@ -10,12 +10,14 @@ import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.homesensors.`interface`.onDataReadeListener
 import com.example.homesensors.`interface`.onItemClickListener
 import com.example.homesensors.activities.TemperatureActivity
 import com.example.homesensors.activities.TemperatureActivity.Companion.EXTRA_TYPE
 import com.example.homesensors.adapters.AdapterSensors
 import com.example.homesensors.entities.temperatureSensor
 import com.example.homesensors.viewModel.AllSensorsViewModel
+import com.example.homesensors.viewModel.ViewModelFactory
 
 
 class MainActivity : AppCompatActivity(), onItemClickListener {
@@ -25,14 +27,14 @@ class MainActivity : AppCompatActivity(), onItemClickListener {
         intentToDetail(allSensors.get(poss).getTypeSensor())
     }
 
-    private fun intentToDetail(type: Int){
+    private fun intentToDetail(type: Int) {
         var toDetail: Intent = Intent(this, TemperatureActivity::class.java)
-        toDetail.putExtra(EXTRA_TYPE,type)
+        toDetail.putExtra(EXTRA_TYPE, type)
         startActivity(toDetail)
 
     }
 
-    private val TAG = "MainActivity";
+    private val TAG = "MainActivity"
 
     lateinit var recyclerView: RecyclerView
 
@@ -66,20 +68,25 @@ class MainActivity : AppCompatActivity(), onItemClickListener {
     }
 
     private fun buildViewModel() {
-        val allSensorViewModel = ViewModelProviders.of(this).get(AllSensorsViewModel::class.java)
+//        val allSensorViewModel = ViewModelProviders.of(this).get(AllSensorsViewModel::class.java)
+
+        val allSensorViewModel =
+            ViewModelProviders.of(this, ViewModelFactory(application, "ddd", object : onDataReadeListener {
+                override fun dataReady() {
+                    Log.d(TAG, "dataReady")
+                }
+
+            }))
+            .get(AllSensorsViewModel::class.java)
 
         allSensorViewModel.getAllValues().observe(this,
             Observer<List<temperatureSensor>> { t ->
                 run {
-                    //                    currentTemperature.text = t.getValue().toString()
-//                    updateUI(t.getSynsState(), t.getLastDateSyns())
                     allSensors = t;
                     homeAdapter!!.setAllSensor(t)
                     Log.d(TAG, "buildViewModel " + t.size)
-
                 }
             })
-
     }
 
 }

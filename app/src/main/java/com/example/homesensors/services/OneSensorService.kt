@@ -1,21 +1,45 @@
 package com.example.homesensors.services
 
+import android.app.Application
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.example.homesensors.`interface`.onDataReadeListener
 import com.example.homesensors.entities.temperatureSensor
 import com.example.homesensors.handlers.DatabaseHandler
+import okhttp3.Call
+import okhttp3.Callback
+import okhttp3.Response
+import org.json.JSONArray
+import org.json.JSONException
+import org.json.JSONObject
+import java.io.IOException
 
-class OneSensorService {
+class OneSensorService(application: Application, sensorID: String, dataReadyListener: onDataReadeListener) : onDataReadeListener {
+    override fun dataReady() {
+        Log.d(TAG, "dataReady")
+    }
 
-    private val dbHandler: DatabaseHandler = DatabaseHandler()
+    private val dbHandler: DatabaseHandler
 
     private val TAG = "OneSensorService"
     private var oneSensor: MutableLiveData<temperatureSensor> = MutableLiveData()
     private val trySensor: temperatureSensor = temperatureSensor(12.0, false, "ddd")
 
+    var application: Application
+    var sensorID: String
+    var dataReadyListener: onDataReadeListener
+
+
     init {
         oneSensor.value = trySensor
+
+        this.application = application
+        this.sensorID = sensorID
+        this.dataReadyListener = dataReadyListener
+
+
+        dbHandler = DatabaseHandler(application)
     }
 
     fun getOneSensors(): LiveData<temperatureSensor> {
@@ -23,10 +47,57 @@ class OneSensorService {
     }
 
     fun registrationListener() {
+        callOneSensor("c9ec2fbe-3af2-4d4e-80bd-830cc3d34543")
         Log.d(TAG, "registrationListener")
     }
 
     fun unRegistrationListener() {
         Log.d(TAG, "unRegistrationListener")
     }
+
+    fun callOneSensor(sensorID: String) {
+        val dotaz = "{ device(id: \"c9ec2fbe-3af2-4d4e-80bd-830cc3d34543\") { id data } }"
+        val map: HashMap<String, String> = hashMapOf("query" to dotaz)
+        Log.d(TAG, "callOneSensor " + map.toString())
+        dataReadyListener.dataReady()
+
+        dbHandler.request.postWithToken(dbHandler.url, map, dbHandler.token, object : Callback {
+            override fun onResponse(call: Call, response: Response) {
+                val resposeData = response.body()?.string()
+                Log.d(TAG, "onResponse callOneSensor: " + response.toString())
+
+                run {
+                    try {
+                        val jsonSen = JSONObject(resposeData)
+                        val data = jsonSen.optJSONObject("data")
+                        val device = data.optJSONObject("device")
+                        val dataSen = device.getJSONArray("data")
+                        val oneDataSet: JSONObject = dataSen.getJSONObject(0)
+                        val oneTemp = oneDataSet.get("BASIC_Temp")
+
+//                        Log.d(TAG, "callOneSensor show " + jsonSen.opt("data").toString())
+                        Log.d(TAG, "callOneSensor show " + oneDataSet.toString() )
+                        Log.d(TAG, "callOneSensor show " + oneTemp.toString() )
+                        setSensorValue(oneTemp as Double)
+                    } catch (e: JSONException) {
+                        Log.d(TAG, "callOneSensor onResponse Err:" + e.message)
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call, e: IOException) {
+                Log.d(TAG, "onFailure " + e.message)
+            }
+
+
+        })
+    }
+
+    private fun setSensorValue(lastValue: Double) {
+        Log.d(TAG, "setSensorValue: " + trySensor.getValue())
+        val newTrySensor = temperatureSensor(lastValue, true, "ddd")
+        oneSensor.postValue(newTrySensor)
+        Log.d(TAG, "setSensorValue: " + trySensor.getValue())
+    }
+
 }

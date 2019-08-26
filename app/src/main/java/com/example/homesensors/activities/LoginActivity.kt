@@ -42,7 +42,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener, onAuthorization
     }
 
     val auth: IAuthorisationHandler = AuthorisationHandler()
-    lateinit var sphHandler: SharePreferencesHandler;
+    lateinit var sphHandler: SharePreferencesHandler
 
     override fun onClick(v: View?) {
         auth.callAuthorization(userName.text.trim().toString(), userPassword.text.trim().toString(), this)

@@ -14,12 +14,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.example.homesensors.R
+import com.example.homesensors.`interface`.onDataReadeListener
 import com.example.homesensors.entities.temperatureSensor
 import com.example.homesensors.entities.temperatureSensor.Companion.SCALE_CELSIUM
 import com.example.homesensors.entities.temperatureSensor.Companion.SCALE_FAHRENHEIT
 import com.example.homesensors.viewModel.OneSensorViewModel
+import com.example.homesensors.viewModel.ViewModelFactory
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import java.lang.Math.round
 import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
@@ -49,11 +50,11 @@ class TemperatureActivity : AppCompatActivity(), OnClickListener {
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(com.example.homesensors.R.layout.temperature_activity)
+        setContentView(R.layout.temperature_activity)
 
         buildButton()
         buildAnimation()
-//        buildViewModel()
+        buildViewModel()
 
         var intent: Intent = intent
         if (intent != null) run {
@@ -68,21 +69,6 @@ class TemperatureActivity : AppCompatActivity(), OnClickListener {
         if (type == 1) {
             mark.setOnClickListener(this)
         }
-
-//
-//        val animator = ValueAnimator.ofInt(0, 50) //0 is min number, 600 is max number
-//        animator.duration = 3000 //Duration is in milliseconds
-//        animator.addUpdateListener { animation -> currentTemperature.setText(animation.animatedValue.toString()) }
-//        animator.addListener(object : AnimatorListenerAdapter() {
-//            override fun onAnimationEnd(animation: Animator) {
-        // done
-//                Log.d(TAG, "onAnimationEnd")
-        buildViewModel()
-//            }
-//        })
-//        animator.start()
-
-
     }
 
     private fun buildButton() {
@@ -103,12 +89,22 @@ class TemperatureActivity : AppCompatActivity(), OnClickListener {
     }
 
     private fun buildViewModel() {
-        val oneSensorViewModel = ViewModelProviders.of(this).get(OneSensorViewModel::class.java)
+        val oneSensorViewModel = ViewModelProviders.of(
+            this,
+            ViewModelFactory(application, "ddd", object : onDataReadeListener {
+                override fun dataReady() {
+                    Log.d(TAG, "dataReady")
+                }
+
+            })
+        )
+
+            .get(OneSensorViewModel::class.java)
 
         oneSensorViewModel.getOneValue().observe(this,
             Observer<temperatureSensor> { t ->
                 run {
-                    currentTemperature.text = round(t.getValue(scale)).toString()
+                    currentTemperature.text = ((t.getValue(scale) * 10) / 10).toString()
                     if (type == 1) {
                         when (scale) {
                             SCALE_CELSIUM -> mark.text = " °C"
@@ -116,12 +112,13 @@ class TemperatureActivity : AppCompatActivity(), OnClickListener {
                             else -> mark.text = " °C"
                         }
                     }
-                    updateUI(t.getSynsState(), t.getLastDateSyns())
+                    Log.d(TAG, "buildViewModel observe: " + t.getValue().toString())
+                    updateUI(t.getSynsState(), t.getLastDateSyns(), t.getValue())
                 }
             })
     }
 
-    private fun updateUI(state: Boolean, lastSyns: Calendar) {
+    private fun updateUI(state: Boolean, lastSyns: Calendar, lastValue: Double) {
         if (state) {
             updatingImage.visibility = VISIBLE
         } else {
