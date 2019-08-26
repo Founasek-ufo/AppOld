@@ -89,16 +89,13 @@ class TemperatureActivity : AppCompatActivity(), OnClickListener {
     }
 
     private fun buildViewModel() {
-        val oneSensorViewModel = ViewModelProviders.of(
-            this,
-            ViewModelFactory(application, "ddd", object : onDataReadeListener {
+        val oneSensorViewModel =
+            ViewModelProviders.of(this, ViewModelFactory(application, "ddd", object : onDataReadeListener {
                 override fun dataReady() {
                     Log.d(TAG, "dataReady")
                 }
 
-            })
-        )
-
+            }))
             .get(OneSensorViewModel::class.java)
 
         oneSensorViewModel.getOneValue().observe(this,

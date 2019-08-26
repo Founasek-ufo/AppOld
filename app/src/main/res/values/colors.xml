@@ -8,6 +8,10 @@
 
     <!-- Text Colors -->
     <color name="textColorWhite">#FFFFFF</color>
+    <color name="textColorBlue">#03A9F4</color>
+
+    <!-- Background main screen -->
+    <color name="newsInformationBackground">#CB03A9F4</color>
 
 
 </resources>

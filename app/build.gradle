@@ -43,6 +43,10 @@ dependencies {
     //ok http
     implementation 'com.squareup.okhttp3:okhttp:3.12.1'
 
+    //chart
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+
+
 
 }
 

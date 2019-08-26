@@ -3,6 +3,7 @@ package com.example.homesensors
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -37,6 +38,7 @@ class MainActivity : AppCompatActivity(), onItemClickListener {
     private val TAG = "MainActivity"
 
     lateinit var recyclerView: RecyclerView
+    lateinit var sensorText: TextView
 
     private var homeAdapter: AdapterSensors? = null
     private var allSensors: List<temperatureSensor> = ArrayList<temperatureSensor>()
@@ -49,10 +51,13 @@ class MainActivity : AppCompatActivity(), onItemClickListener {
         buildView()
         buildRecyclerView()
         buildViewModel()
+
+        sensorText.text = "0 " + getString(R.string.sensor_text_one)
     }
 
     fun buildView() {
         recyclerView = findViewById(R.id.home_recyclerview)
+        sensorText = findViewById(R.id.sensors_active)
     }
 
     fun buildRecyclerView() {
@@ -68,7 +73,6 @@ class MainActivity : AppCompatActivity(), onItemClickListener {
     }
 
     private fun buildViewModel() {
-//        val allSensorViewModel = ViewModelProviders.of(this).get(AllSensorsViewModel::class.java)
 
         val allSensorViewModel =
             ViewModelProviders.of(this, ViewModelFactory(application, "ddd", object : onDataReadeListener {
@@ -77,12 +81,17 @@ class MainActivity : AppCompatActivity(), onItemClickListener {
                 }
 
             }))
-            .get(AllSensorsViewModel::class.java)
+                .get(AllSensorsViewModel::class.java)
 
         allSensorViewModel.getAllValues().observe(this,
             Observer<List<temperatureSensor>> { t ->
                 run {
-                    allSensors = t;
+                    allSensors = t
+                    if (allSensors.size < 2) {
+                        sensorText.text = t.size.toString() + " " + getString(R.string.sensor_text_one)
+                    } else {
+                        sensorText.text = t.size.toString() + " " + getString(R.string.sensor_text_more)
+                    }
                     homeAdapter!!.setAllSensor(t)
                     Log.d(TAG, "buildViewModel " + t.size)
                 }
