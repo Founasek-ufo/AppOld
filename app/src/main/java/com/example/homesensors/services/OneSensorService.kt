@@ -10,12 +10,12 @@ import com.example.homesensors.handlers.DatabaseHandler
 import okhttp3.Call
 import okhttp3.Callback
 import okhttp3.Response
-import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
 import java.io.IOException
 
-class OneSensorService(application: Application, sensorID: String, dataReadyListener: onDataReadeListener) : onDataReadeListener {
+class OneSensorService(application: Application, sensorID: String, dataReadyListener: onDataReadeListener) :
+    onDataReadeListener {
     override fun dataReady() {
         Log.d(TAG, "dataReady")
     }
@@ -26,6 +26,10 @@ class OneSensorService(application: Application, sensorID: String, dataReadyList
     private var oneSensor: MutableLiveData<temperatureSensor> = MutableLiveData()
     private val trySensor: temperatureSensor = temperatureSensor(12.0, false, "ddd")
 
+    private var arrayValue: MutableLiveData<Array<Double>> = MutableLiveData()
+    private var tryArrayValue: Array<Double> = arrayOf(10.0, 12.0)
+
+
     var application: Application
     var sensorID: String
     var dataReadyListener: onDataReadeListener
@@ -33,6 +37,7 @@ class OneSensorService(application: Application, sensorID: String, dataReadyList
 
     init {
         oneSensor.value = trySensor
+        arrayValue.value = tryArrayValue
 
         this.application = application
         this.sensorID = sensorID
@@ -44,6 +49,10 @@ class OneSensorService(application: Application, sensorID: String, dataReadyList
 
     fun getOneSensors(): LiveData<temperatureSensor> {
         return oneSensor
+    }
+
+    fun getArrayValue(): LiveData<Array<Double>> {
+        return arrayValue
     }
 
     fun registrationListener() {
@@ -75,10 +84,40 @@ class OneSensorService(application: Application, sensorID: String, dataReadyList
                         val oneDataSet: JSONObject = dataSen.getJSONObject(0)
                         val oneTemp = oneDataSet.get("BASIC_Temp")
 
-//                        Log.d(TAG, "callOneSensor show " + jsonSen.opt("data").toString())
-                        Log.d(TAG, "callOneSensor show " + oneDataSet.toString() )
-                        Log.d(TAG, "callOneSensor show " + oneTemp.toString() )
-                        setSensorValue(oneTemp as Double)
+                        Log.d(TAG, "callOneSensor show " + oneDataSet.toString())
+                        Log.d(TAG, "callOneSensor show " + oneTemp.toString())
+
+                        val finalTemp: Double
+                        if (oneTemp is Int) {
+                            finalTemp = oneTemp.toDouble()
+                        } else {
+                            finalTemp = oneTemp as Double
+                        }
+
+
+
+
+                        setSensorValue(finalTemp)
+
+                        var pole = arrayOf<Double>()
+                        for (x in 0 until 100 step 1) {
+                            val oneDataSetFor = dataSen.getJSONObject(x)
+                            val oneTempFor = oneDataSetFor.get("BASIC_Temp")
+                            var finalTemp: Double
+                            if (oneTempFor is Int) {
+                                finalTemp = oneTempFor.toDouble()
+                            } else {
+                                finalTemp = oneTempFor as Double
+                            }
+                            pole += finalTemp
+                        }
+
+                        setArrayValue(pole)
+
+                        Log.d(TAG, "onResponse pole size " + pole.size)
+                        for (poleS in pole) {
+                            Log.d(TAG, "onResponse pole " + poleS)
+                        }
                     } catch (e: JSONException) {
                         Log.d(TAG, "callOneSensor onResponse Err:" + e.message)
                     }
@@ -98,6 +137,10 @@ class OneSensorService(application: Application, sensorID: String, dataReadyList
         val newTrySensor = temperatureSensor(lastValue, true, "ddd")
         oneSensor.postValue(newTrySensor)
         Log.d(TAG, "setSensorValue: " + trySensor.getValue())
+    }
+
+    private fun setArrayValue(arryValue: Array<Double>) {
+        arrayValue.postValue(arryValue)
     }
 
 }

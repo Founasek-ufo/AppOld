@@ -12,7 +12,9 @@ class OneSensorViewModel(application: Application, sensorID:String,dataReadyList
 
     private val oneSensorRepository: OneSensorRepository
     private var oneValue: LiveData<temperatureSensor>
+    private var arrayValue: LiveData<Array<Double>>
     var dataReadyListener: onDataReadeListener
+
 
 
     var application:Application
@@ -29,10 +31,15 @@ class OneSensorViewModel(application: Application, sensorID:String,dataReadyList
         registrationListener()
 
         oneValue = this.oneSensorRepository.getOneSenosr()
+        arrayValue = this.oneSensorRepository.getArrayValue()
     }
 
     fun getOneValue(): LiveData<temperatureSensor>{
         return oneValue
+    }
+
+    fun getArrayValue(): LiveData<Array<Double>>{
+        return arrayValue;
     }
 
     private fun registrationListener(){

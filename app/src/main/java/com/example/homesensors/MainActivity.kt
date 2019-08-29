@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity(), onItemClickListener {
     }
 
     private fun intentToDetail(type: Int) {
-        var toDetail: Intent = Intent(this, TemperatureActivity::class.java)
+        val toDetail = Intent(this, TemperatureActivity::class.java)
         toDetail.putExtra(EXTRA_TYPE, type)
         startActivity(toDetail)
 

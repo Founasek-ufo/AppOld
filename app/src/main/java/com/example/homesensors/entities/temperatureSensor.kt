@@ -27,8 +27,10 @@ class temperatureSensor(value: Double, syns: Boolean, serialNumber: String) {
         this.value = value
         this.syns = syns
         this.serialNumber = serialNumber
-        synsLastDate = getCurrentTime()
+        this.synsLastDate = getCurrentTime()
     }
+
+
 
     fun getCurrentTime(): Calendar{
         return Calendar.getInstance()

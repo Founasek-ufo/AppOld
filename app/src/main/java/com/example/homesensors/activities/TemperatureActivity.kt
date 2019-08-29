@@ -2,6 +2,7 @@ package com.example.homesensors.activities
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -20,10 +21,17 @@ import com.example.homesensors.entities.temperatureSensor.Companion.SCALE_CELSIU
 import com.example.homesensors.entities.temperatureSensor.Companion.SCALE_FAHRENHEIT
 import com.example.homesensors.viewModel.OneSensorViewModel
 import com.example.homesensors.viewModel.ViewModelFactory
+import com.github.mikephil.charting.charts.LineChart
+import com.github.mikephil.charting.components.XAxis
+import com.github.mikephil.charting.components.YAxis
+import com.github.mikephil.charting.data.Entry
+import com.github.mikephil.charting.data.LineData
+import com.github.mikephil.charting.data.LineDataSet
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.ArrayList
 
 
 class TemperatureActivity : AppCompatActivity(), OnClickListener {
@@ -41,6 +49,7 @@ class TemperatureActivity : AppCompatActivity(), OnClickListener {
     lateinit var mainFabExpand: Animation
     lateinit var mainFabCollspan: Animation
     lateinit var mark: TextView
+    lateinit var lineChar: LineChart
 
     var openState: Boolean = false
 
@@ -56,7 +65,7 @@ class TemperatureActivity : AppCompatActivity(), OnClickListener {
         buildAnimation()
         buildViewModel()
 
-        var intent: Intent = intent
+        val intent: Intent = intent
         if (intent != null) run {
             type = intent.getIntExtra(EXTRA_TYPE, 0)
             Log.d(TAG, "onCreate " + type.toString())
@@ -80,6 +89,18 @@ class TemperatureActivity : AppCompatActivity(), OnClickListener {
 
         mainFab.setOnClickListener(this)
 
+        lineChar = findViewById(R.id.lineChart)
+
+
+
+        lineChar.description.text = "Data ze senzoru"
+
+        val x: XAxis = lineChar.xAxis
+        x.position = XAxis.XAxisPosition.BOTTOM
+        x.textColor = Color.RED
+
+        val yRight: YAxis = lineChar.axisRight
+        yRight.isEnabled = false
 
     }
 
@@ -96,7 +117,7 @@ class TemperatureActivity : AppCompatActivity(), OnClickListener {
                 }
 
             }))
-            .get(OneSensorViewModel::class.java)
+                .get(OneSensorViewModel::class.java)
 
         oneSensorViewModel.getOneValue().observe(this,
             Observer<temperatureSensor> { t ->
@@ -113,6 +134,30 @@ class TemperatureActivity : AppCompatActivity(), OnClickListener {
                     updateUI(t.getSynsState(), t.getLastDateSyns(), t.getValue())
                 }
             })
+
+        oneSensorViewModel.getArrayValue().observe(this,
+            Observer<Array<Double>> {
+                run {
+                    Log.d(TAG, "buildViewModel array list")
+
+                    val entries: MutableList<Entry> = ArrayList()
+
+                    for (i in 10 until it.size step 1) {
+                        val entry = Entry(i.toFloat(), it.get(i).toFloat())
+                        entries.add(entry)
+                    }
+
+
+                    val dataset = LineDataSet(entries, "")
+                    dataset.setDrawValues(false)
+
+                    val lineData = LineData(dataset)
+
+                    lineChar.data = lineData
+                    lineChar.invalidate()
+                }
+            }
+        )
     }
 
     private fun updateUI(state: Boolean, lastSyns: Calendar, lastValue: Double) {

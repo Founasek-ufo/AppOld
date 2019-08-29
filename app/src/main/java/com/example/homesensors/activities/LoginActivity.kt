@@ -45,7 +45,11 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener, onAuthorization
     lateinit var sphHandler: SharePreferencesHandler
 
     override fun onClick(v: View?) {
+//        goToMain()
+            // TODO: for testing
         auth.callAuthorization(userName.text.trim().toString(), userPassword.text.trim().toString(), this)
+
+
 
     }
 

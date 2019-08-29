@@ -9,19 +9,15 @@
 
         tools:context=".activities.TemperatureActivity">
 
-    <FrameLayout
-            android:layout_height="180dp"
-            android:id="@+id/frameLayout"
-            app:layout_constraintTop_toBottomOf="@+id/sensor_temperature"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+    <com.github.mikephil.charting.charts.LineChart
             android:layout_width="0dp"
-            app:layout_constraintHorizontal_bias="0.0"
-            android:layout_marginBottom="@dimen/bottomMargin10"
-            app:layout_constraintBottom_toTopOf="@+id/floatingActionButton"
-            app:layout_constraintVertical_bias="0.0">
-
-    </FrameLayout>
+            android:layout_height="300dp"
+            app:layout_constraintTop_toBottomOf="@+id/temperature_mark"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="8dp"
+            android:id="@+id/lineChart"/>
 
     <ImageView
             android:id="@+id/profileImage"
@@ -78,10 +74,10 @@
             android:textColor="#000000"
             android:textAlignment="textStart"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/topMargin10"
-            app:layout_constraintTop_toBottomOf="@+id/frameLayout"
             android:layout_marginStart="@dimen/leftMargin10"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/lineChart"/>
 
     <TextView
             android:text="@string/synchronization_text"
