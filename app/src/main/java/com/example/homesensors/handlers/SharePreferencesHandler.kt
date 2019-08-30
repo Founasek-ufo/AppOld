@@ -26,7 +26,7 @@ class SharePreferencesHandler(context: Context) : ISharePreferencesHandler {
 
     init {
         this.context = context
-        tokenPreferences = context.getSharedPreferences(ARG_SP_tokenPrefrences, Activity.MODE_PRIVATE);
+        tokenPreferences = context.getSharedPreferences(ARG_SP_tokenPrefrences, Activity.MODE_PRIVATE)
     }
 
 
