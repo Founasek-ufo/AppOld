@@ -20,6 +20,10 @@ class OneSensorService(application: Application, sensorID: String, dataReadyList
         Log.d(TAG, "dataReady")
     }
 
+    override fun dataError() {
+        Log.d(TAG, "dataError")
+    }
+
     private val dbHandler: DatabaseHandler
 
     private val TAG = "OneSensorService"

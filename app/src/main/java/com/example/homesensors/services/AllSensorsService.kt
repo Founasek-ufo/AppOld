@@ -14,15 +14,20 @@ import org.json.JSONException
 import org.json.JSONObject
 import java.io.IOException
 
-class AllSensorsService(application: Application, sensorID: String, dataReadyListener: onDataReadeListener): onDataReadeListener {
+class AllSensorsService(application: Application, sensorID: String, dataReadyListener: onDataReadeListener) :
+    onDataReadeListener {
     override fun dataReady() {
         Log.d(TAG, "dataReady")
+    }
+
+    override fun dataError() {
+        Log.d(TAG, "dataError")
     }
 
     private val dbHandler: DatabaseHandler
 
     private val TAG = "AllSensorsService"
-    private val allSensors: MutableLiveData<List<temperatureSensor>> = MutableLiveData<List<temperatureSensor>>()
+    private val allSensors: MutableLiveData<List<temperatureSensor>> = MutableLiveData()
     val trySensor1: temperatureSensor = temperatureSensor(2.0, false, "temp")
 
     var application: Application
@@ -32,11 +37,11 @@ class AllSensorsService(application: Application, sensorID: String, dataReadyLis
     init {
 
         Log.d(TAG, "init all sensors service")
-        val sensoreValue: MutableList<temperatureSensor> = ArrayList<temperatureSensor>();
-        sensoreValue.add(trySensor1)
+//        val sensoreValue: MutableList<temperatureSensor> = ArrayList()
+//        sensoreValue.add(trySensor1)
 
 
-        this@AllSensorsService.allSensors.value = sensoreValue
+//        this@AllSensorsService.allSensors.value = sensoreValue
 
         this.application = application
         this.sensorID = sensorID
@@ -52,7 +57,6 @@ class AllSensorsService(application: Application, sensorID: String, dataReadyLis
     fun registrationListener() {
         Log.d(TAG, "registrationListener")
         callAllSensors()
-//        startCountDownTimer()
     }
 
     fun unRegistrationListener() {
@@ -60,7 +64,8 @@ class AllSensorsService(application: Application, sensorID: String, dataReadyLis
     }
 
     fun callAllSensors() {
-        val dotaz = "{ devices(modelId: 85) {id description descriptionLong lastDataUpdate model {id name vendorName } data } }"
+        val dotaz =
+            "{ devices(modelId: 85) {id description descriptionLong lastDataUpdate model {id name vendorName } data } }"
         val map: HashMap<String, String> = hashMapOf("query" to dotaz)
         Log.d(TAG, "callOneSensor " + map.toString())
         dataReadyListener.dataReady()
@@ -81,7 +86,6 @@ class AllSensorsService(application: Application, sensorID: String, dataReadyLis
                         val lastData = oneDataSet.getJSONArray("data")
                         val lastTemperatureSet = lastData.getJSONObject(0)
                         val lastTemperature = lastTemperatureSet.get("BASIC_Temp")
-//                        val lastTemperature = lastTemperatureSet.get("RADIO_LSNR")
                         Log.d(TAG, "onResponse last temperature " + lastTemperature)
 
                         var finalTemp: Double = 0.0
@@ -93,8 +97,9 @@ class AllSensorsService(application: Application, sensorID: String, dataReadyLis
 
                         setSensorValue(oneTemp as String, finalTemp as Double)
 
-                        Log.d(TAG, "callOneSensor show " + oneTemp.toString() )
+                        Log.d(TAG, "callOneSensor show " + oneTemp.toString())
                     } catch (e: JSONException) {
+                        dataReadyListener.dataError()
                         Log.d(TAG, "callOneSensor onResponse Err:" + e.message)
                     }
                 }
@@ -111,10 +116,10 @@ class AllSensorsService(application: Application, sensorID: String, dataReadyLis
     private fun setSensorValue(descrition: String, lastTemperature: Double) {
         Log.d(TAG, "setSensorValue: " + trySensor1.getValue())
         val sensoreValue: MutableList<temperatureSensor> = ArrayList<temperatureSensor>();
-        sensoreValue.add(temperatureSensor(lastTemperature,false,descrition))
+        sensoreValue.add(temperatureSensor(lastTemperature, false, descrition))
 
 
-        this@AllSensorsService.allSensors.postValue( sensoreValue )
+        this@AllSensorsService.allSensors.postValue(sensoreValue)
         Log.d(TAG, "setSensorValue: " + trySensor1.getValue())
     }
 

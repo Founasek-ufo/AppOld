@@ -116,6 +116,9 @@ class TemperatureActivity : AppCompatActivity(), OnClickListener {
                     Log.d(TAG, "dataReady")
                 }
 
+                override fun dataError() {
+                    Log.d(TAG, "dataError")
+                }
             }))
                 .get(OneSensorViewModel::class.java)
 

@@ -3,6 +3,9 @@ package com.example.homesensors
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.widget.ImageView
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -39,6 +42,9 @@ class MainActivity : AppCompatActivity(), onItemClickListener {
 
     lateinit var recyclerView: RecyclerView
     lateinit var sensorText: TextView
+    lateinit var indictorSync: ImageView
+    lateinit var textBeforeSync: TextView
+    lateinit var progresBarBeforeSync: ProgressBar
 
     private var homeAdapter: AdapterSensors? = null
     private var allSensors: List<temperatureSensor> = ArrayList<temperatureSensor>()
@@ -58,6 +64,9 @@ class MainActivity : AppCompatActivity(), onItemClickListener {
     fun buildView() {
         recyclerView = findViewById(R.id.home_recyclerview)
         sensorText = findViewById(R.id.sensors_active)
+        indictorSync = findViewById(R.id.senosrs_update)
+        textBeforeSync = findViewById(R.id.sensors_synchronization)
+        progresBarBeforeSync = findViewById(R.id.progress_synchronization)
     }
 
     fun buildRecyclerView() {
@@ -80,6 +89,10 @@ class MainActivity : AppCompatActivity(), onItemClickListener {
                     Log.d(TAG, "dataReady")
                 }
 
+                override fun dataError() {
+                    textBeforeSync.text = "Error"
+                    indictorSync.visibility = View.INVISIBLE
+                }
             }))
                 .get(AllSensorsViewModel::class.java)
 
@@ -92,6 +105,10 @@ class MainActivity : AppCompatActivity(), onItemClickListener {
                     } else {
                         sensorText.text = t.size.toString() + " " + getString(R.string.sensor_text_more)
                     }
+                    textBeforeSync.visibility = View.INVISIBLE
+                    progresBarBeforeSync.visibility = View.INVISIBLE
+                    indictorSync.visibility = View.VISIBLE
+                    sensorText.visibility = View.VISIBLE
                     homeAdapter!!.setAllSensor(t)
                     Log.d(TAG, "buildViewModel " + t.size)
                 }

@@ -8,7 +8,7 @@ import okhttp3.OkHttpClient
 class DatabaseHandler(application: Application) {
 
     val TAG = "DatabaseHandler"
-    var client = OkHttpClient()
+    private var client = OkHttpClient()
     var request = OkHttpRequest(client)
     val url = "https://iot.otavanet.cz/graphql"
     val token: String
