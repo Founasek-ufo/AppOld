@@ -37,12 +37,12 @@
             android:id="@+id/userUnknown"
             android:layout_width="60dp"
             android:layout_height="60dp"
+            android:layout_marginEnd="20dp"
             android:contentDescription="@string/user_photo_description"
-            app:layout_constraintTop_toTopOf="@+id/imageHouse"
-            app:srcCompat="@drawable/user_unknown"
             app:layout_constraintBottom_toTopOf="@+id/imageHouse"
             app:layout_constraintEnd_toEndOf="@+id/imageHouse"
-            android:layout_marginEnd="20dp"/>
+            app:layout_constraintTop_toTopOf="@+id/imageHouse"
+            app:srcCompat="@drawable/user_photo" />
 
     <TextView
             android:text="@string/menu_text"

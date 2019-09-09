@@ -118,7 +118,9 @@
             android:layout_marginEnd="@dimen/rightMargin20"
             android:layout_marginBottom="@dimen/bottomMargin20"
             app:layout_constraintBottom_toBottomOf="parent"
+            android:visibility="gone"
             />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

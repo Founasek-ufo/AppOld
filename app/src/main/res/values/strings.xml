@@ -1,15 +1,15 @@
 <resources>
-    <string name="app_name">HomeSensors</string>
+    <string name="app_name">Domácí sensory</string>
 
     <!-- Main Menu - Texts -->
-    <string name="menu_text">Senznam senzorů</string>
-    <string name="sensor_text_one">  sensor je aktivní</string>
-    <string name="sensor_text_more"> sensory jsou aktivní</string>
-    <string name="sensor_before_sync"> Chvilku strpení dochází k syncrhonizaci</string>
+    <string name="menu_text">Seznam senzorů</string>
+    <string name="sensor_text_one">sensor je aktivní</string>
+    <string name="sensor_text_more">sensory jsou aktivní</string>
+    <string name="sensor_before_sync">Chvilku strpení dochází k syncrhonizaci</string>
     <string name="temperature">Teplotní senzor</string>
-    <string name="humidity">Humidity</string>
-    <string name="lights">Lights</string>
-    <string name="doors">Doors</string>
+    <string name="humidity">Vlhkost</string>
+    <string name="lights">Světla</string>
+    <string name="doors">Dveře</string>
     <string name="alarm">Alarm</string>
 
     <!-- Login Menu - Texts -->
@@ -18,19 +18,19 @@
     <string name="password_hint">Heslo</string>
 
     <!-- Register Menu - Texts -->
-    <string name="RegistrationHeadline_text">Registration</string>
-    <string name="RegisterHere_text">Register Here.</string>
-    <string name="Login_text">login via …</string>
-    <string name="register_button">Register Now!</string>
-    <string name="YourUsername_hint">Username</string>
-    <string name="YourPassword_hint">Password</string>
+    <string name="RegistrationHeadline_text">Registrace</string>
+    <string name="RegisterHere_text">Registrovat</string>
+    <string name="Login_text">Přihlásit se s …</string>
+    <string name="register_button">Registrovat!</string>
+    <string name="YourUsername_hint">Uživatelské jméno</string>
+    <string name="YourPassword_hint">Heslo</string>
 
     <!-- Temperature - Texts -->
-    <string name="message_text">Vypadá to velmi dobře!</string>
+    <string name="message_text">Data vypadají v pořádku!</string>
     <string name="temperature_value">22</string>
     <string name="temperature_mark">°C</string>
     <string name="position_text">Venkovní teplota</string>
-    <string name="synchronization_text">Just now</string>
+    <string name="synchronization_text">Nyní</string>
 
 
     <!-- Image Descriptions -->

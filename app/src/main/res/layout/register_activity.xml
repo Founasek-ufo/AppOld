@@ -7,11 +7,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/ConstraintLayout"
-        tools:context=".activities.TemperatureActivity">
+        tools:context=".activities.TemperatureActivity"
+        >
 
 
     <RelativeLayout
-            android:background="@color/colorBackground"
+            android:background="@drawable/login_background"
             android:layout_height="match_parent"
             android:layout_width="match_parent"
             >
@@ -21,13 +22,13 @@
                 android:layout_width="120dp"
                 android:layout_centerHorizontal="true"
                 android:layout_alignParentTop="true"
-                app:srcCompat="@drawable/paperplane"
+                app:srcCompat="@drawable/user_unknown"
                 android:layout_marginTop="@dimen/topMargin50"
                 android:id="@+id/imageView"
                 android:contentDescription="@string/login_description"/>
 
         <EditText
-                android:background="@color/colorBackgroundLight"
+                android:background="@color/textColorWhite"
                 android:layout_height="40dp"
                 android:layout_width="250dp"
                 android:layout_centerHorizontal="true"
@@ -37,10 +38,11 @@
                 android:textSize="@dimen/textSize15"
                 android:inputType="textPersonName"
                 android:hint="@string/YourUsername_hint"
+                android:textColorHint="@color/cardview_dark_background"
                 android:ems="10"/>
 
         <EditText
-                android:background="@color/colorBackgroundLight"
+                android:background="@color/textColorWhite"
                 android:layout_height="40dp"
                 android:layout_width="250dp"
                 android:id="@+id/password_name"
@@ -50,7 +52,8 @@
                 android:ems="10"
                 android:layout_alignStart="@+id/user_name"
                 android:layout_alignBottom="@+id/cardView"
-                android:textSize="@dimen/textSize15"/>
+                android:textSize="@dimen/textSize15"
+                android:textColorHint="@color/cardview_dark_background"/>
 
 
         <androidx.cardview.widget.CardView
