@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity(), onItemClickListener {
         val toDetail = Intent(this, TemperatureActivity::class.java)
         toDetail.putExtra(EXTRA_TYPE, type)
         startActivity(toDetail)
-
+//test s
     }
 
     private val TAG = "MainActivity"
